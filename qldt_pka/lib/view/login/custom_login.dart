@@ -62,6 +62,19 @@ Future<Object?> customSigninDialog(BuildContext context,
                           ),
                         ],
                       ),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(vertical: 20.0),
+                        child: Text("Sign up with Microsoft",
+                            style: TextStyle(color: Colors.black54)),
+                      ),
+                      IconButton(
+                          padding: EdgeInsets.zero,
+                          onPressed: () {},
+                          icon: SvgPicture.asset(
+                            "assets/icons/email_box.svg",
+                            height: 64,
+                            width: 64,
+                          )),
                     ]),
                     const Positioned(
                       left: 0,
