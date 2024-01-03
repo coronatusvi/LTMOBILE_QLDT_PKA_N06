@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'login_view.dart';
-import 'package:flutter'
 
 Future<Object?> customSigninDialog(BuildContext context,
     {required ValueChanged onClosed}) {
