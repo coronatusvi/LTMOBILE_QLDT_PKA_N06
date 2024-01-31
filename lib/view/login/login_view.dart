@@ -111,23 +111,27 @@ class _SignInFormState extends State<SignInForm> {
                 Padding(
                   padding: const EdgeInsets.only(top: 8.0, bottom: 24),
                   child: ElevatedButton.icon(
-                      onPressed: () {
-                        signIn(context);
-                      },
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: Color.fromARGB(255, 0, 4, 245),
-                          minimumSize: const Size(double.infinity, 56),
-                          shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(10),
-                                  topRight: Radius.circular(25),
-                                  bottomRight: Radius.circular(25),
-                                  bottomLeft: Radius.circular(25)))),
-                      icon: const Icon(
-                        CupertinoIcons.arrow_right,
-                        color: Color(0xFFFE0037),
-                      ),
-                      label: const Text("Sign In")),
+                    onPressed: () {
+                      signIn(context);
+                    },
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Color.fromARGB(255, 0, 4, 245),
+                        minimumSize: const Size(double.infinity, 56),
+                        shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(10),
+                                topRight: Radius.circular(25),
+                                bottomRight: Radius.circular(25),
+                                bottomLeft: Radius.circular(25)))),
+                    icon: const Icon(
+                      CupertinoIcons.arrow_right,
+                      color: Color(0xFFFE0037),
+                    ),
+                    label: const Text(
+                      "Sign In",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
                 )
               ],
             )),
