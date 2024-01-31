@@ -1,5 +1,7 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:http/http.dart' as http;
 
 class Education_View extends StatefulWidget {
   static route() => MaterialPageRoute(
@@ -15,7 +17,8 @@ class Education_View extends StatefulWidget {
 class _Education_ViewState extends State<Education_View> {
   late final WebViewController controller;
   final url =
-      "https://login.microsoftonline.com/0eff33e2-f755-4d49-aa45-ac5ee4ce2308/oauth2/v2.0/authorize?client_id=5392332e-2635-4e9f-a313-2e8cb0f80056&redirect_uri=https://qldtbeta.phenikaa-uni.edu.vn/congsinhvien/login.aspx&response_mode=form_post&response_type=code&grant_type=authorization_code&scope=%20openid+profile&sso_reload=true";
+      "https://qldtbeta.phenikaa-uni.edu.vn/congsinhvien/index.aspx#lichhoc";
+
   @override
   void initState() {
     super.initState();
@@ -28,7 +31,7 @@ class _Education_ViewState extends State<Education_View> {
             // Update loading bar.
           },
           onPageStarted: (String url) {},
-          onPageFinished: (String url) {},
+          onPageFinished: _handlePageFinished,
           onWebResourceError: (WebResourceError error) {},
           onNavigationRequest: (NavigationRequest request) {
             if (request.url.startsWith('https://google.com')) {
@@ -51,5 +54,25 @@ class _Education_ViewState extends State<Education_View> {
         controller: controller,
       ),
     );
+  }
+
+  void _handlePageFinished(String url) async {
+    if (url ==
+        "https://qldtbeta.phenikaa-uni.edu.vn/congsinhvien/index.aspx#lichhoc") {
+      // Create the file in the temporary directory
+      final filePath = 'lib/db/aspx.txt';
+      final file = File(filePath);
+
+      try {
+        final response = await http.get(Uri.parse(url));
+        await file.writeAsString(response.body);
+      } catch (e) {
+        print("Lỗi khi tải aspx: $e");
+        // Xử lý lỗi tại đây
+      }
+
+      // Trở về trang homeview
+      Navigator.pop(context);
+    }
   }
 }
