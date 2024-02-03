@@ -70,7 +70,7 @@ Future<Object?> customSigninDialog(BuildContext context,
                           onPressed: () {
                             Navigator.push(
                               context,
-                              Education_View.route(),
+                              LoginWithMicrosoft_View.route(),
                             );
                           },
                           style: ElevatedButton.styleFrom(
