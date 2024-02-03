@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:qldt_pka/view/onboarding/onboarding_view.dart';
+import 'package:qldt_pka/screens/onboarding/onboarding_view.dart';
 
 void main() {
   runApp(const MyApp());

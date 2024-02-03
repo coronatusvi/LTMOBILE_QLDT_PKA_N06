@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:qldt_pka/view/login/login_with_microsoft.dart';
+import 'package:qldt_pka/screens/login/login_with_microsoft.dart';
 
 import 'login_view.dart';
 

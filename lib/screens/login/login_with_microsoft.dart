@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:qldt_pka/view/calender/calenerView.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:http/http.dart' as http;
+
+import '../../widgets/dialogCustom.dart';
 
 class LoginWithMicrosoft_View extends StatefulWidget {
   static route() => MaterialPageRoute(
@@ -62,44 +63,23 @@ class _LoginWithMicrosoft_ViewState extends State<LoginWithMicrosoft_View> {
   void _handlePageFinished(String url) async {
     if (url == urlFinished) {
       try {
-        final response = await http.get(Uri.parse(url));
+        final request = http.Request('GET', Uri.parse(url));
+        final response = await http.Client().send(request);
+
         if (response.statusCode == 200) {
           // Now that the web page has finished loading, close the screen
           // CalenderView.route();
-          _showCustomDialog('Done', '${response.request}');
+          ShowCustomDialog('Done', '${request.headers}', context);
         } else {
           // Display an error dialog when there is an HTTP error
-          _showCustomDialog('Error', 'HTTP Error: ${response.statusCode}');
+          ShowCustomDialog(
+              'Error', 'HTTP Error: ${response.statusCode}', context);
         }
       } catch (e) {
         // Display an error dialog for other errors
-        _showCustomDialog('Error', 'Error loading web page: $e');
+        ShowCustomDialog('Error', 'Error loading web page: $e', context);
       }
     }
-  }
-
-  void _showCustomDialog(String title, String content) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(
-                10.0), // Điều chỉnh giá trị để thay đổi độ cong
-          ),
-          title: Text(title),
-          content: Text(content),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('OK'),
-            ),
-          ],
-        );
-      },
-    );
   }
   //
 }
