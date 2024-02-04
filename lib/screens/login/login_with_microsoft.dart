@@ -1,8 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:http/http.dart' as http;
-
 import '../../widgets/dialogCustom.dart';
+import 'package:html/parser.dart';
 
 class LoginWithMicrosoft_View extends StatefulWidget {
   static route() => MaterialPageRoute(
@@ -38,21 +40,21 @@ class _LoginWithMicrosoft_ViewState extends State<LoginWithMicrosoft_View> {
           onPageFinished: _handlePageFinished,
           onWebResourceError: (WebResourceError error) {},
           onNavigationRequest: (NavigationRequest request) {
-            if (request.url.startsWith(urlFinished)) {
+            if (request.url.startsWith(urlStarted)) {
               return NavigationDecision.prevent;
             }
             return NavigationDecision.navigate;
           },
         ),
       )
-      ..loadRequest(Uri.parse(urlFinished));
+      ..loadRequest(Uri.parse(urlStarted));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Education'),
+        title: Text("Education"),
       ),
       body: WebViewWidget(
         controller: controller,
@@ -62,14 +64,17 @@ class _LoginWithMicrosoft_ViewState extends State<LoginWithMicrosoft_View> {
 
   void _handlePageFinished(String url) async {
     if (url == urlFinished) {
+      final response = await http.get(Uri.parse(url));
       try {
-        final request = http.Request('GET', Uri.parse(url));
-        final response = await http.Client().send(request);
-
         if (response.statusCode == 200) {
-          // Now that the web page has finished loading, close the screen
+          String contentString = utf8.decode(response.bodyBytes);
+          final regex = RegExp(r"var tokenJWT = '([^']+)';");
+          print(contentString);
+          final match = regex.firstMatch(contentString);
+
+          ShowCustomDialog(
+              'Done $match', response.body + contentString, context);
           // CalenderView.route();
-          ShowCustomDialog('Done', '${request.headers}', context);
         } else {
           // Display an error dialog when there is an HTTP error
           ShowCustomDialog(

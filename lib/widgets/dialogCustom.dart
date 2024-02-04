@@ -6,11 +6,12 @@ void ShowCustomDialog(String title, String content, context) {
     builder: (BuildContext context) {
       return AlertDialog(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(
-              10.0), // Điều chỉnh giá trị để thay đổi độ cong
+          borderRadius: BorderRadius.circular(10.0),
         ),
         title: Text(title),
-        content: Text(content),
+        content: ListView(
+          children: [Text(content)],
+        ),
         actions: <Widget>[
           TextButton(
             onPressed: () {

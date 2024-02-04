@@ -59,7 +59,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         Text(
                           "Welcome to Phenikaa University",
                           style: TextStyle(
-                              fontSize: 40, fontFamily: "Poppins", height: 1.2),
+                            fontSize: 40,
+                            fontFamily: "Poppins",
+                            height: 1.2,
+                          ),
                         ),
                         SizedBox(
                           height: 16,
@@ -74,7 +77,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       btnAnimationController: _btnAnimationController,
                       press: () {
                         _btnAnimationController.isActive = true;
-                        Future.delayed(const Duration(milliseconds: 1800), () {
+                        Future.delayed(const Duration(milliseconds: 800), () {
                           setState(() {
                             isSignInDialogShown = true;
                           });
