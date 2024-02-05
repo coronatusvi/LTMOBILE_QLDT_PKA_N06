@@ -2,8 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:qldt_pka/screens/login/login_with_microsoft.dart';
-
-import 'login_view.dart';
+import '../screens/login/login_view.dart';
 
 Future<Object?> customSigninDialog(BuildContext context,
     {required ValueChanged onClosed}) {

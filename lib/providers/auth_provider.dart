@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:qldt_pka/models/auth_model.dart';
+import 'package:qldt_pka/utils/env.dart';
 
 class AuthProvider extends ChangeNotifier {
   AuthModel? _authorization;
@@ -18,4 +19,13 @@ class AuthProvider extends ChangeNotifier {
   AuthModel? getAuth() {
     return _authorization;
   }
+}
+
+AuthModel getDataHtml(String html) {
+  // Xử lý thông tin / KHÔNG ĐỘNG ĐẾN
+  final regexUserId = RegExp(Config.USERID_REGEX);
+  final regexTokenJWT = RegExp(Config.TOKENJWT_REGEX);
+  final userId = regexUserId.firstMatch(html)?.group(1);
+  final tokenJWT = regexTokenJWT.firstMatch(html)?.group(1);
+  return AuthModel(userId: userId, accessToken: tokenJWT);
 }

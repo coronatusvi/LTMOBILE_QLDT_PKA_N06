@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qldt_pka/models/auth_model.dart';
-import 'package:qldt_pka/providers/auth_provider.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import '../../models/auth_model.dart';
+import '../../providers/auth_provider.dart';
+import '../../utils/env.dart';
 import '../../widgets/dialogCustom.dart';
+import '../calendar/calendar_view.dart';
 
 class LoginWithMicrosoft_View extends StatefulWidget {
   static route() => MaterialPageRoute(
@@ -18,13 +20,10 @@ class LoginWithMicrosoft_View extends StatefulWidget {
 }
 
 class _LoginWithMicrosoft_ViewState extends State<LoginWithMicrosoft_View> {
-  late AuthModel _authModel;
   late final WebViewController controller;
-  final urlStarted =
-      "https://qldtbeta.phenikaa-uni.edu.vn/congsinhvien/login.aspx#";
-  final urlFinished =
-      "https://qldtbeta.phenikaa-uni.edu.vn/congsinhvien/index.aspx#dashboard";
 
+  String urlStarted = Config.API_URL + Config.LOGIN_EDUCAION;
+  String urlFinished = Config.API_URL + Config.HOME_EDUCAION;
   @override
   void initState() {
     super.initState();
@@ -33,9 +32,7 @@ class _LoginWithMicrosoft_ViewState extends State<LoginWithMicrosoft_View> {
       ..setBackgroundColor(const Color(0x00000000))
       ..setNavigationDelegate(
         NavigationDelegate(
-          onProgress: (int progress) {
-            // Update loading bar.
-          },
+          onProgress: (int progress) {},
           onPageStarted: (urlStarted) {},
           onPageFinished: _handlePageFinished,
           onWebResourceError: (WebResourceError error) {},
@@ -72,29 +69,18 @@ class _LoginWithMicrosoft_ViewState extends State<LoginWithMicrosoft_View> {
       String response = await controller
           .runJavaScript('document.documentElement.innerHTML') as String;
       var authData = getDataHtml(response);
-      // setState(() {
-      //   _authModel = authData;
-      // });
+
       Provider.of<AuthProvider>(context, listen: false).setAuth(authData);
-      AuthModel? authProvider =
-          Provider.of<AuthProvider>(context, listen: false).getAuth();
       try {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => CalenderView()));
         ShowCustomDialog(
             'Done',
-            "Hi,\n ${authProvider?.userId}, ${_authModel?.accessToken}",
+            "Bạn đã đăng nhập thành công! \nNhấn 'OK' để đến màn hình chính.",
             context);
       } catch (e) {
         ShowCustomDialog('Error', 'Error loading web page: $e', context);
       }
     }
-  }
-
-  AuthModel getDataHtml(String html) {
-    // Xử lý thông tin / KHÔNG ĐỘNG ĐẾN
-    final regexUserId = RegExp(r"var userId          = '([^']+)';");
-    final regexTokenJWT = RegExp(r"var tokenJWT = '([^']+)';");
-    final userId = regexUserId.firstMatch(html)?.group(1);
-    final tokenJWT = regexTokenJWT.firstMatch(html)?.group(1);
-    return AuthModel(userId: userId, accessToken: tokenJWT);
   }
 }

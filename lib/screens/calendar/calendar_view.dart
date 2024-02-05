@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'home_page.dart';
+
 class CalenderView extends StatefulWidget {
   static route() => MaterialPageRoute(
         builder: (context) => CalenderView(),
@@ -12,6 +14,6 @@ class CalenderView extends StatefulWidget {
 class _CalenderViewState extends State<CalenderView> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return HomePage();
   }
 }
