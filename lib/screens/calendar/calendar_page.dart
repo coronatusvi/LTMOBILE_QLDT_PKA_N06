@@ -62,7 +62,7 @@ class CalendarPage extends StatelessWidget {
                         },
                         child: Center(
                           child: Text(
-                            'Add task',
+                            '(^ _ ^)',
                             style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w700,

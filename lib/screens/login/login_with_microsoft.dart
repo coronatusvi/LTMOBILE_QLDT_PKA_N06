@@ -71,13 +71,26 @@ class _LoginWithMicrosoft_ViewState extends State<LoginWithMicrosoft_View> {
       var authData = getDataHtml(response);
 
       Provider.of<AuthProvider>(context, listen: false).setAuth(authData);
+
       try {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => CalenderView()));
-        ShowCustomDialog(
-            'Done',
-            "Bạn đã đăng nhập thành công! \nNhấn 'OK' để đến màn hình chính.",
-            context);
+        if (authData.accessToken != "") {
+          if (authData.accessToken?[0] != "e") {
+            Navigator.pop(context);
+            ShowCustomDialog(
+                'Error',
+                "Lỗi đăng nhập! \nNhấn 'OK' hoặc khoảng trống để đến màn hình chính.",
+                context);
+          } else {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => CalenderView()),
+            );
+            ShowCustomDialog(
+                'DONE!',
+                "Đăng nhập thành công! \nNhấn 'OK' hoặc khoảng trống để đến màn hình chính.",
+                context);
+          }
+        }
       } catch (e) {
         ShowCustomDialog('Error', 'Error loading web page: $e', context);
       }
