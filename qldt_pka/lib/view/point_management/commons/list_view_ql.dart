@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:qldt_pka/view/point_management/page/transcript.dart';
-import 'package:qldt_pka/view/point_management/page/semester_tf.dart';
+import 'package:qldt_pka/view/point_management/page/transcript_screen.dart';
+import 'package:qldt_pka/view/point_management/page/semester_screen.dart';
 import 'package:qldt_pka/view/point_management/styleguide/colors.dart';
 
 class List_Button_ql extends StatelessWidget {

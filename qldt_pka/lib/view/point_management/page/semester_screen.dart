@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:qldt_pka/view/point_management/commons/semester/semester.dart';
 import 'package:qldt_pka/view/point_management/commons/list_view_ql.dart';
-
-import 'package:qldt_pka/view/point_management/commons/avatar/info.dart';
-import 'package:qldt_pka/view/point_management/styleguide/colors.dart';
-import 'package:qldt_pka/view/point_management/commons/avatar/opaque_image.dart';
-import 'package:qldt_pka/view/point_management/styleguide/text_style.dart';
-import 'package:qldt_pka/view/point_management/commons/avatar/my_info.dart';
+import 'package:qldt_pka/view/point_management/app_export.dart';
 
 class Semester_table extends StatelessWidget {
   @override
