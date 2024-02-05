@@ -1,10 +1,9 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:qldt_pka/models/auth_model.dart';
+import 'package:qldt_pka/providers/auth_provider.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-import 'package:http/http.dart' as http;
 import '../../widgets/dialogCustom.dart';
-import 'package:html/parser.dart';
 
 class LoginWithMicrosoft_View extends StatefulWidget {
   static route() => MaterialPageRoute(
@@ -19,6 +18,7 @@ class LoginWithMicrosoft_View extends StatefulWidget {
 }
 
 class _LoginWithMicrosoft_ViewState extends State<LoginWithMicrosoft_View> {
+  late AuthModel _authModel;
   late final WebViewController controller;
   final urlStarted =
       "https://qldtbeta.phenikaa-uni.edu.vn/congsinhvien/login.aspx#";
@@ -52,39 +52,49 @@ class _LoginWithMicrosoft_ViewState extends State<LoginWithMicrosoft_View> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Education"),
-      ),
-      body: WebViewWidget(
-        controller: controller,
-      ),
+    return ChangeNotifierProvider(
+      create: (context) => AuthProvider(),
+      builder: (context, child) {
+        return Scaffold(
+          appBar: AppBar(
+            title: Text("Education"),
+          ),
+          body: WebViewWidget(
+            controller: controller,
+          ),
+        );
+      },
     );
   }
 
   void _handlePageFinished(String url) async {
     if (url == urlFinished) {
-      final response = await http.get(Uri.parse(url));
+      String response = await controller
+          .runJavaScript('document.documentElement.innerHTML') as String;
+      var authData = getDataHtml(response);
+      // setState(() {
+      //   _authModel = authData;
+      // });
+      Provider.of<AuthProvider>(context, listen: false).setAuth(authData);
+      AuthModel? authProvider =
+          Provider.of<AuthProvider>(context, listen: false).getAuth();
       try {
-        if (response.statusCode == 200) {
-          String contentString = utf8.decode(response.bodyBytes);
-          final regex = RegExp(r"var tokenJWT = '([^']+)';");
-          print(contentString);
-          final match = regex.firstMatch(contentString);
-
-          ShowCustomDialog(
-              'Done $match', response.body + contentString, context);
-          // CalenderView.route();
-        } else {
-          // Display an error dialog when there is an HTTP error
-          ShowCustomDialog(
-              'Error', 'HTTP Error: ${response.statusCode}', context);
-        }
+        ShowCustomDialog(
+            'Done',
+            "Hi,\n ${authProvider?.userId}, ${_authModel?.accessToken}",
+            context);
       } catch (e) {
-        // Display an error dialog for other errors
         ShowCustomDialog('Error', 'Error loading web page: $e', context);
       }
     }
   }
-  //
+
+  AuthModel getDataHtml(String html) {
+    // Xử lý thông tin / KHÔNG ĐỘNG ĐẾN
+    final regexUserId = RegExp(r"var userId          = '([^']+)';");
+    final regexTokenJWT = RegExp(r"var tokenJWT = '([^']+)';");
+    final userId = regexUserId.firstMatch(html)?.group(1);
+    final tokenJWT = regexTokenJWT.firstMatch(html)?.group(1);
+    return AuthModel(userId: userId, accessToken: tokenJWT);
+  }
 }

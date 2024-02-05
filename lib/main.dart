@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:qldt_pka/providers/auth_provider.dart';
 import 'package:qldt_pka/screens/onboarding/onboarding_view.dart';
 
 void main() {
@@ -11,24 +13,27 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: '',
-      theme: ThemeData(
-        scaffoldBackgroundColor: Color(0xFFEEF1F8),
-        primarySwatch: Colors.blue,
-        fontFamily: "Intel",
-        inputDecorationTheme: const InputDecorationTheme(
-          filled: true,
-          fillColor: Colors.white,
-          errorStyle: TextStyle(height: 0),
-          border: defaultInputBorder,
-          enabledBorder: defaultInputBorder,
-          focusedBorder: defaultInputBorder,
-          errorBorder: defaultInputBorder,
+    return ChangeNotifierProvider(
+      create: (context) => AuthProvider(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: '',
+        theme: ThemeData(
+          scaffoldBackgroundColor: Color(0xFFEEF1F8),
+          primarySwatch: Colors.blue,
+          fontFamily: "Intel",
+          inputDecorationTheme: const InputDecorationTheme(
+            filled: true,
+            fillColor: Colors.white,
+            errorStyle: TextStyle(height: 0),
+            border: defaultInputBorder,
+            enabledBorder: defaultInputBorder,
+            focusedBorder: defaultInputBorder,
+            errorBorder: defaultInputBorder,
+          ),
         ),
+        home: const OnboardingScreen(),
       ),
-      home: const OnboardingScreen(),
     );
   }
 }
