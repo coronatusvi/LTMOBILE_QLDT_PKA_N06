@@ -5,7 +5,6 @@ import '../../utils/dates_list.dart';
 import '../../widgets/back_button.dart';
 import '../../widgets/calendar_dates.dart';
 import '../../widgets/task_container.dart';
-import 'create_new_task_page.dart';
 
 class CalendarPage extends StatelessWidget {
   Widget _dashedText() {
@@ -52,14 +51,7 @@ class CalendarPage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(30),
                       ),
                       child: FloatingActionButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => CreateNewTaskPage(),
-                            ),
-                          );
-                        },
+                        onPressed: () {},
                         child: Center(
                           child: Text(
                             '(^ _ ^)',

@@ -45,6 +45,8 @@ class _LoginWithMicrosoft_ViewState extends State<LoginWithMicrosoft_View> {
         ),
       )
       ..loadRequest(Uri.parse(urlStarted));
+
+    controller.clearCache();
   }
 
   @override
@@ -81,14 +83,18 @@ class _LoginWithMicrosoft_ViewState extends State<LoginWithMicrosoft_View> {
                 "Lỗi đăng nhập! \nNhấn 'OK' hoặc khoảng trống để đến màn hình chính.",
                 context);
           } else {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => CalenderView()),
-            );
-            ShowCustomDialog(
-                'DONE!',
-                "Đăng nhập thành công! \nNhấn 'OK' hoặc khoảng trống để đến màn hình chính.",
-                context);
+            if (authData.accessToken != "") {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CalenderView()),
+              );
+              ShowCustomDialog(
+                  'DONE!',
+                  "Đăng nhập thành công! \nNhấn 'OK' hoặc khoảng trống để đến màn hình chính.",
+                  context);
+            } else {
+              ShowCustomDialog("Error", "Đã xảy ra lỗi đăng nhập", context);
+            }
           }
         }
       } catch (e) {
