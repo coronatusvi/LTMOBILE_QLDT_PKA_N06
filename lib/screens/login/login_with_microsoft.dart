@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qldt_pka/screens/calendar/home_page.dart';
+import 'package:qldt_pka/screens/calendar/home_view.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import '../../models/auth_model.dart';
 import '../../providers/auth_provider.dart';
@@ -58,6 +58,14 @@ class _LoginWithMicrosoft_ViewState extends State<LoginWithMicrosoft_View> {
         return Scaffold(
           appBar: AppBar(
             title: Text("Education"),
+            flexibleSpace: Container(
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: <Color>[Colors.red, Colors.blue]),
+              ),
+            ),
           ),
           body: WebViewWidget(
             controller: controller,
@@ -80,24 +88,12 @@ class _LoginWithMicrosoft_ViewState extends State<LoginWithMicrosoft_View> {
       try {
         if (authDataModel?.accessToken != "") {
           if (authDataModel?.accessToken?[0] != "e") {
-            Navigator.pop(context);
-            ShowCustomDialog(
-                'Error',
-                "Lỗi đăng nhập! \nNhấn 'OK' hoặc khoảng trống để trở về.",
-                context);
           } else {
             if (authData.accessToken != "") {
-              ShowCustomDialog(
-                'DONE!',
-                "Đăng nhập thành công! \nNhấn 'OK' hoặc khoảng trống để đến màn hình chính.",
+              Navigator.push(
                 context,
+                MaterialPageRoute(builder: (context) => HomeView()),
               );
-              Future.delayed(Duration(seconds: 1), () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => HomePage()),
-                );
-              });
             } else {
               ShowCustomDialog("Error", "Đã xảy ra lỗi đăng nhập", context);
             }

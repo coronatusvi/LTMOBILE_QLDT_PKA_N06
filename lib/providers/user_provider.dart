@@ -9,9 +9,9 @@ import '../utils/env.dart';
 import 'auth_provider.dart';
 
 class UserDataProvider extends ChangeNotifier {
-  List<UserModel>? _UserDataModel; // Sửa thành List<UserModel>
+  UserModel? _UserDataModel; // Sửa thành List<UserModel>
 
-  Future<List<UserModel>?> fetchData(BuildContext context) async {
+  Future<UserModel?> fetchData(BuildContext context) async {
     AuthModel? authProvider =
         Provider.of<AuthDataProvider>(context, listen: false).getAuth();
     String user_endpoint =
@@ -31,10 +31,10 @@ class UserDataProvider extends ChangeNotifier {
 
       // Đảm bảo rằng couseData.data là List
       if (userData.data is List) {
-        // Chuyển đổi danh sách Map<String, dynamic> thành danh sách UserModel
-        _UserDataModel = (userData.data as List)
+        List<UserModel> users = (userData.data as List)
             .map((item) => UserModel.fromJson(item))
             .toList();
+        _UserDataModel = users?[0];
 
         notifyListeners();
         return _UserDataModel;
@@ -48,7 +48,7 @@ class UserDataProvider extends ChangeNotifier {
     }
   }
 
-  List<UserModel>? getUsers(BuildContext context) {
+  UserModel? getUsers(BuildContext context) {
     return _UserDataModel;
   }
 }

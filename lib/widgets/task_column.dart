@@ -39,9 +39,9 @@ class TaskColumn extends StatelessWidget {
             Text(
               subtitle!,
               style: TextStyle(
-                  fontSize: 14.0,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.black45),
+                fontSize: 14.0,
+                fontWeight: FontWeight.w700,
+              ),
             ),
           ],
         )

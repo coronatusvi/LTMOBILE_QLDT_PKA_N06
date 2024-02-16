@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qldt_pka/providers/auth_provider.dart';
 import 'package:qldt_pka/providers/course_provider.dart';
+import 'package:qldt_pka/providers/user_provider.dart';
 import 'package:qldt_pka/screens/onboarding/onboarding_view.dart';
 
 void main() {
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => AuthDataProvider()),
         ChangeNotifierProvider(create: (context) => CourseDataProvider()),
+        ChangeNotifierProvider(create: (context) => UserDataProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
