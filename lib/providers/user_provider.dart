@@ -2,20 +2,21 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
-import 'package:qldt_pka/models/course_model.dart';
 import 'package:qldt_pka/models/data_model.dart';
 import '../models/auth_model.dart'; // Import your AuthModel
+import '../models/user_model.dart';
 import '../utils/env.dart';
 import 'auth_provider.dart';
 
-class CourseDataProvider extends ChangeNotifier {
-  List<CourseModel>? _courseDataModel; // Sửa thành List<CourseModel>
+class UserDataProvider extends ChangeNotifier {
+  List<UserModel>? _UserDataModel; // Sửa thành List<UserModel>
 
-  static const String apiUrl = Config.API_URL + Config.COURSE_EDUCAION;
-
-  Future<List<CourseModel>?> fetchData(BuildContext context) async {
+  Future<List<UserModel>?> fetchData(BuildContext context) async {
     AuthModel? authProvider =
         Provider.of<AuthDataProvider>(context, listen: false).getAuth();
+    String user_endpoint =
+        Config.setApiGetUser((authProvider?.userId).toString());
+    String apiUrl = Config.API_URL + user_endpoint;
     var response = await http.get(
       Uri.parse(apiUrl),
       headers: {
@@ -26,28 +27,28 @@ class CourseDataProvider extends ChangeNotifier {
 
     if (response.statusCode == 200) {
       final Map<String, dynamic> data = json.decode(response.body);
-      ResponseModel couseData = ResponseModel.fromJson(data);
+      ResponseModel userData = ResponseModel.fromJson(data);
 
       // Đảm bảo rằng couseData.data là List
-      if (couseData.data is List) {
-        // Chuyển đổi danh sách Map<String, dynamic> thành danh sách CourseModel
-        _courseDataModel = (couseData.data as List)
-            .map((item) => CourseModel.fromJson(item))
+      if (userData.data is List) {
+        // Chuyển đổi danh sách Map<String, dynamic> thành danh sách UserModel
+        _UserDataModel = (userData.data as List)
+            .map((item) => UserModel.fromJson(item))
             .toList();
 
         notifyListeners();
-        return _courseDataModel;
+        return _UserDataModel;
       } else {
-        _courseDataModel = null;
+        _UserDataModel = null;
         notifyListeners();
-        return _courseDataModel;
+        return _UserDataModel;
       }
     } else {
       throw Exception('Failed to load data');
     }
   }
 
-  List<CourseModel>? getCourses(BuildContext context) {
-    return _courseDataModel;
+  List<UserModel>? getUsers(BuildContext context) {
+    return _UserDataModel;
   }
 }

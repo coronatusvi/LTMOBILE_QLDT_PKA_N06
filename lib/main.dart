@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qldt_pka/providers/auth_provider.dart';
+import 'package:qldt_pka/providers/course_provider.dart';
 import 'package:qldt_pka/screens/onboarding/onboarding_view.dart';
 
 void main() {
@@ -8,13 +9,15 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => AuthProvider(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => AuthDataProvider()),
+        ChangeNotifierProvider(create: (context) => CourseDataProvider()),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: '',

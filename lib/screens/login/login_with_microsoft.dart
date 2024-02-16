@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:qldt_pka/screens/calendar/home_page.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import '../../models/auth_model.dart';
 import '../../providers/auth_provider.dart';
@@ -52,7 +53,7 @@ class _LoginWithMicrosoft_ViewState extends State<LoginWithMicrosoft_View> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => AuthProvider(),
+      create: (context) => AuthDataProvider(),
       builder: (context, child) {
         return Scaffold(
           appBar: AppBar(
@@ -72,26 +73,31 @@ class _LoginWithMicrosoft_ViewState extends State<LoginWithMicrosoft_View> {
           .runJavaScript('document.documentElement.innerHTML') as String;
       var authData = getDataHtml(response);
 
-      Provider.of<AuthProvider>(context, listen: false).setAuth(authData);
+      Provider.of<AuthDataProvider>(context, listen: false).setAuth(authData);
+      var authDataModel =
+          Provider.of<AuthDataProvider>(context, listen: false).getAuth();
 
       try {
-        if (authData.accessToken != "") {
-          if (authData.accessToken?[0] != "e") {
+        if (authDataModel?.accessToken != "") {
+          if (authDataModel?.accessToken?[0] != "e") {
             Navigator.pop(context);
             ShowCustomDialog(
                 'Error',
-                "Lỗi đăng nhập! \nNhấn 'OK' hoặc khoảng trống để đến màn hình chính.",
+                "Lỗi đăng nhập! \nNhấn 'OK' hoặc khoảng trống để trở về.",
                 context);
           } else {
             if (authData.accessToken != "") {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => CalenderView()),
-              );
               ShowCustomDialog(
-                  'DONE!',
-                  "Đăng nhập thành công! \nNhấn 'OK' hoặc khoảng trống để đến màn hình chính.",
-                  context);
+                'DONE!',
+                "Đăng nhập thành công! \nNhấn 'OK' hoặc khoảng trống để đến màn hình chính.",
+                context,
+              );
+              Future.delayed(Duration(seconds: 1), () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomePage()),
+                );
+              });
             } else {
               ShowCustomDialog("Error", "Đã xảy ra lỗi đăng nhập", context);
             }

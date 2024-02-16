@@ -26,9 +26,7 @@ class ActiveProjectsCard extends StatelessWidget {
           color: cardColor,
           borderRadius: BorderRadius.circular(40.0),
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: ListView(
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.all(10.0),

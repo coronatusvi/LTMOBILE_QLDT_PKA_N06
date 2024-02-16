@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:qldt_pka/models/auth_model.dart';
 import 'package:qldt_pka/utils/env.dart';
 
-class AuthProvider extends ChangeNotifier {
+class AuthDataProvider extends ChangeNotifier {
   AuthModel? _authorization;
 
   AuthModel? get authorization => _authorization;
