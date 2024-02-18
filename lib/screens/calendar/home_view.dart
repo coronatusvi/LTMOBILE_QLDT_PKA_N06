@@ -44,7 +44,7 @@ class _HomeViewState extends State<HomeView> {
             gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
-                colors: <Color>[Colors.blue, Colors.red]),
+                colors: <Color>[Colors.yellow, Colors.blue]),
           ),
         ),
       ),

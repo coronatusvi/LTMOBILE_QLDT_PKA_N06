@@ -59,11 +59,12 @@ class _LoginWithMicrosoft_ViewState extends State<LoginWithMicrosoft_View> {
           appBar: AppBar(
             title: Text("Education"),
             flexibleSpace: Container(
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: <Color>[Colors.red, Colors.blue]),
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: <Color>[Colors.blue, Colors.red],
+                ),
               ),
             ),
           ),

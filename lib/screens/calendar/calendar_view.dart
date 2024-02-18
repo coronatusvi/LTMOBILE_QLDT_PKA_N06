@@ -19,7 +19,7 @@ class _CalenderViewState extends State<CalenderView> {
       appBar: AppBar(),
       body: FutureBuilder(
         future: Provider.of<CourseDataProvider>(context, listen: false)
-            .fetchData(context),
+            .fetchData(context, "01/01/2024", "07/01/2024"),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             // Loading state
