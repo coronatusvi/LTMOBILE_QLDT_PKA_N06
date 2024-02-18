@@ -8,7 +8,6 @@ import '../../theme/colors/light_colors.dart';
 import '../../widgets/active_project_card.dart';
 import '../../widgets/task_column.dart';
 import '../../widgets/top_container.dart';
-import 'calendar_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
