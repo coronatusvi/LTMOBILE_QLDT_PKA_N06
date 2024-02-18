@@ -1,34 +1,44 @@
 import 'package:flutter/material.dart';
-import 'package:qldt_pka/view/onboarding/onboarding_view.dart';
+import 'package:provider/provider.dart';
+import 'package:qldt_pka/providers/auth_provider.dart';
+import 'package:qldt_pka/providers/course_provider.dart';
+import 'package:qldt_pka/providers/user_provider.dart';
+import 'package:qldt_pka/screens/onboarding/onboarding_view.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: '',
-      theme: ThemeData(
-        scaffoldBackgroundColor: Color(0xFFEEF1F8),
-        primarySwatch: Colors.blue,
-        fontFamily: "Intel",
-        inputDecorationTheme: InputDecorationTheme(
-          filled: true,
-          fillColor: Colors.white,
-          errorStyle: TextStyle(height: 0),
-          border: defaultInputBorder,
-          enabledBorder: defaultInputBorder,
-          focusedBorder: defaultInputBorder,
-          errorBorder: defaultInputBorder,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => AuthDataProvider()),
+        ChangeNotifierProvider(create: (context) => CourseDataProvider()),
+        ChangeNotifierProvider(create: (context) => UserDataProvider()),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: '',
+        theme: ThemeData(
+          scaffoldBackgroundColor: Color(0xFFEEF1F8),
+          primarySwatch: Colors.blue,
+          fontFamily: "Intel",
+          inputDecorationTheme: const InputDecorationTheme(
+            filled: true,
+            fillColor: Colors.white,
+            errorStyle: TextStyle(height: 0),
+            border: defaultInputBorder,
+            enabledBorder: defaultInputBorder,
+            focusedBorder: defaultInputBorder,
+            errorBorder: defaultInputBorder,
+          ),
         ),
+        home: const OnboardingScreen(),
       ),
-      home: const OnboardingScreen(),
     );
   }
 }

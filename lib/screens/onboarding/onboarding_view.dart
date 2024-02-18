@@ -1,11 +1,8 @@
 import 'dart:ui';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
-
-import '../../components/animation_btn.dart';
-import '../login/custom_login.dart';
+import '../../widgets/animation_btn.dart';
+import '../../widgets/custom_login.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -45,7 +42,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           child: const SizedBox(),
         )),
         AnimatedPositioned(
-          duration: Duration(milliseconds: 240),
+          duration: const Duration(milliseconds: 240),
           top: isSignInDialogShown ? -50 : 0,
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
@@ -62,7 +59,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         Text(
                           "Welcome to Phenikaa University",
                           style: TextStyle(
-                              fontSize: 40, fontFamily: "Poppins", height: 1.2),
+                            fontSize: 40,
+                            fontFamily: "Poppins",
+                            height: 1.2,
+                          ),
                         ),
                         SizedBox(
                           height: 16,
@@ -77,7 +77,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       btnAnimationController: _btnAnimationController,
                       press: () {
                         _btnAnimationController.isActive = true;
-                        Future.delayed(Duration(milliseconds: 800), () {
+                        Future.delayed(const Duration(milliseconds: 800), () {
                           setState(() {
                             isSignInDialogShown = true;
                           });
