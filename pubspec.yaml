@@ -1,0 +1,50 @@
+name: qldt_pka
+description: A new Flutter project.
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.1.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  cupertino_icons: ^1.0.2
+  rive: ^0.12.4
+  flutter_svg: ^2.0.9
+<<<<<<< HEAD:qldt_pka/pubspec.yaml
+  tuple: ^2.0.2
+=======
+  webview_flutter: ^4.4.2
+  http: ^1.1.0
+  path_provider: ^2.1.2
+  provider: ^6.1.1
+  percent_indicator: ^4.2.3
+  syncfusion_flutter_calendar: ^24.2.4
+>>>>>>> origin/master:pubspec.yaml
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/Backgrounds/
+    - assets/icons/
+    - assets/RiveAssets/
+
+  fonts:
+    - family: Intel
+      fonts:
+        - asset: assets/Fonts/Inter-Regular.ttf
+        - asset: assets/Fonts/Inter-SemiBold.ttf
+          weight: 600
+    - family: Poppins
+      fonts:
+        - asset: assets/Fonts/Poppins-Bold.ttf
+          weight: 700
+
