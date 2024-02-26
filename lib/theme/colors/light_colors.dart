@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class LightColors  {
+class LightColors {
   static const Color kLightYellow = Color(0xFFFFF9EC);
   static const Color kLightYellow2 = Color(0xFFFFE4C7);
   static const Color kDarkYellow = Color(0xFFF9BE7C);
@@ -13,4 +13,24 @@ class LightColors  {
   static const Color kGreen = Color(0xFF309397);
 
   static const Color kDarkBlue = Color(0xFF0D253F);
+
+  static const Color primaryColor = Color(0xFFDB3620);
+  static const Color primaryColorOpacity = Color(0xFFFF7F50);
+  static const Color hintTextColor = Color(0xFFE4E0E8);
+  static const Color primaryTextColor = Color(0xFF1A1316);
+  static const Color secondaryTextColor = Color(0xFF8391A0);
+  static const Color tertiaryTextColor = Color(0xFFB5ADAC);
+  static const Color backgourdColor = Color.fromARGB(255, 203, 201, 199);
+  final Color greenColor = Colors.green.shade400;
+  final Color blueColor = Colors.lightBlueAccent;
 }
+
+const Color primaryColor = Color(0xFFDB3620);
+const Color primaryColorOpacity = Color(0xFFFF7F50);
+const Color hintTextColor = Color(0xFFE4E0E8);
+const Color primaryTextColor = Color(0xFF1A1316);
+const Color secondaryTextColor = Color(0xFF8391A0);
+const Color tertiaryTextColor = Color(0xFFB5ADAC);
+const Color backgourdColor = Color.fromARGB(255, 203, 201, 199);
+final Color greenColor = Colors.green.shade400;
+final Color blueColor = Colors.lightBlueAccent;
