@@ -1,13 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-<<<<<<< HEAD:qldt_pka/lib/view/login/custom_login.dart
-
-import 'login_view.dart';
-=======
 import 'package:qldt_pka/screens/login/login_with_microsoft.dart';
 import '../screens/login/login_view.dart';
->>>>>>> origin/master:lib/widgets/custom_login.dart
 
 Future<Object?> customSigninDialog(BuildContext context,
     {required ValueChanged onClosed}) {
