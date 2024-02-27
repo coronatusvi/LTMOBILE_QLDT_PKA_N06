@@ -17,7 +17,7 @@ class UserDataProvider extends ChangeNotifier {
     String user_endpoint =
         Config.setApiGetUser((authProvider?.userId).toString());
     String apiUrl = Config.API_URL + user_endpoint;
-    
+
     var response = await http.get(
       Uri.parse(apiUrl),
       headers: {

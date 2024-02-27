@@ -21,6 +21,7 @@ class CourseDataProvider extends ChangeNotifier {
             listen: false)
         .getAuth(); // Tạp biến nhận authorization đã lưu vào khi đăng nhập để gửi kèm api với có thể nhận kết quả.
 
+    // Lay thoi gian thuc
     DateTime now = DateTime.now();
     int unixTimestamp = now.millisecondsSinceEpoch ~/ 1000;
     

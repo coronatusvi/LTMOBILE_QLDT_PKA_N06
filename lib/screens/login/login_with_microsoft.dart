@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qldt_pka/screens/calendar/home_view.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-import '../../models/auth_model.dart';
 import '../../providers/auth_provider.dart';
 import '../../utils/env.dart';
 import '../../widgets/dialogCustom.dart';
-import '../calendar/calendar_view.dart';
 
 class LoginWithMicrosoft_View extends StatefulWidget {
   static route() => MaterialPageRoute(
@@ -85,7 +83,6 @@ class _LoginWithMicrosoft_ViewState extends State<LoginWithMicrosoft_View> {
       Provider.of<AuthDataProvider>(context, listen: false).setAuth(authData);
       var authDataModel =
           Provider.of<AuthDataProvider>(context, listen: false).getAuth();
-
       try {
         if (authDataModel?.accessToken != "") {
           if (authDataModel?.accessToken?[0] != "e") {
