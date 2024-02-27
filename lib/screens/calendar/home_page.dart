@@ -75,7 +75,7 @@ class _HomePageState extends State<HomePage> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
                           CircularPercentIndicator(
-                            radius: 70.0,
+                            radius: 50.0,
                             lineWidth: 5.0,
                             animation: true,
                             percent: 0.85,

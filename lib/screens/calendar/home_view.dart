@@ -32,10 +32,10 @@ class _HomeViewState extends State<HomeView> {
               return Text('Error: ${snapshot.error}');
             } else {
               // Data loaded successfully
-              UserModel? courseData =
+              UserModel? userData =
                   Provider.of<UserDataProvider>(context, listen: false)
                       .getUsers(context);
-              return Text("Xin chào ${courseData?.ten ?? 'No course data'}");
+              return Text("Xin chào ${userData?.ten ?? 'No course data'}");
             }
           },
         ),
