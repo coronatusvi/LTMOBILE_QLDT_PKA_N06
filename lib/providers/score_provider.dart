@@ -4,15 +4,16 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
-import 'package:qldt_pka/models/course_model.dart';
 import 'package:qldt_pka/models/data_model.dart';
 import '../models/auth_model.dart'; // Import your AuthModel
+import '../models/data_score_model.dart';
 import '../utils/env.dart';
 import 'auth_provider.dart';
 import 'package:qldt_pka/models/score_model.dart';
 
 // import '../utils/env.dart'
 class CourseDataProvider extends ChangeNotifier {
+  Learning_Model? _learning_model;
   List<ScoreModel>?
       _scoreDataModel; // Tạo một biến có kiểu Mảng một lịch học (Là trong thời gian đó có nhiều kỳ học)
 
@@ -45,14 +46,17 @@ class CourseDataProvider extends ChangeNotifier {
       // Nếu call api thành công
       final Map<String, dynamic> data = json
           .decode(response.body); // Tạo biến data nhận body của response trả về
-      ResponseModel scoreData = ResponseModel.fromJson(
+      ResponseScoreModel scoreData = ResponseScoreModel.fromJson(
           data); // Tạo một biến có kiểu là Model tổng mà các api trả về (Là model ở trên đã hướng dẫn)
 
       // Đảm bảo rằng couseData.data là List
-      if (scoreData.data is List) {
+      if (scoreData.data?.rsdiemtrungbinhchung is List) {
+        List<ScoreModel>? learningmodel = json.decode(scoreData.data!.rsdiemtrungbinhchung);
         // Chuyển đổi danh sách Map<String, dynamic> thành danh sách CourseModel
+        
         _scoreDataModel = (scoreData.data as List)
-            .map((item) => ScoreModel.fromJson(item))
+            .map((item) => Learning_Model.fromJson(item))
+            .cast<ScoreModel>()
             .toList();
         // Đặt debug ở đoạn này để xem data đã nhận về chưa
 

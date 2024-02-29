@@ -17,7 +17,7 @@ class UserDataProvider extends ChangeNotifier {
     String user_endpoint =
         Config.setApiGetUser((authProvider?.userId).toString());
     String apiUrl = Config.API_URL + user_endpoint;
-    
+
     var response = await http.get(
       Uri.parse(apiUrl),
       headers: {
@@ -35,7 +35,7 @@ class UserDataProvider extends ChangeNotifier {
         List<UserModel> users = (userData.data as List)
             .map((item) => UserModel.fromJson(item))
             .toList();
-        _UserDataModel = users?[0];
+        _UserDataModel = users[0];
 
         notifyListeners();
         return _UserDataModel;
