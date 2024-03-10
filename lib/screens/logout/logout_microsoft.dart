@@ -1,28 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qldt_pka/screens/calendar/home_view.dart';
+import 'package:qldt_pka/screens/login/login_with_microsoft.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import '../../providers/auth_provider.dart';
 import '../../utils/env.dart';
 import '../../widgets/dialogCustom.dart';
+import '../onboarding/onboarding_view.dart';
 
-class LoginWithMicrosoft_View extends StatefulWidget {
+class LogOutWithMicrosoft_View extends StatefulWidget {
   static route() => MaterialPageRoute(
-        builder: (context) => const LoginWithMicrosoft_View(),
+        builder: (context) => const LogOutWithMicrosoft_View(),
       );
 
-  const LoginWithMicrosoft_View({super.key});
+  const LogOutWithMicrosoft_View({super.key});
 
   @override
-  State<LoginWithMicrosoft_View> createState() =>
-      _LoginWithMicrosoft_ViewState();
+  State<LogOutWithMicrosoft_View> createState() =>
+      _LogOutWithMicrosoft_ViewState();
 }
 
-class _LoginWithMicrosoft_ViewState extends State<LoginWithMicrosoft_View> {
+class _LogOutWithMicrosoft_ViewState extends State<LogOutWithMicrosoft_View> {
   late final WebViewController controller;
 
-  String urlStarted = Config.API_URL + Config.LOGIN_EDUCAION;
-  String urlFinished = Config.API_URL + Config.HOME_EDUCAION;
+  String urlStarted = Config.API_URL + Config.LOGOUT_EDUCAION;
+  String urlFinished = Config.LOGOUT_ACCESS;
   @override
   void initState() {
     super.initState();
@@ -56,8 +57,7 @@ class _LoginWithMicrosoft_ViewState extends State<LoginWithMicrosoft_View> {
         return Scaffold(
           appBar: AppBar(
             automaticallyImplyLeading: false,
-            title: Text("Education"),
-            centerTitle: true,
+            title: Text("Logout Education"),
             flexibleSpace: Container(
               decoration: BoxDecoration(
                 gradient: LinearGradient(
@@ -78,30 +78,8 @@ class _LoginWithMicrosoft_ViewState extends State<LoginWithMicrosoft_View> {
 
   void _handlePageFinished(String url) async {
     if (url == urlFinished) {
-      String response = await controller
-          .runJavaScript('document.documentElement.innerHTML') as String;
-      var authData = getDataHtml(response);
-
-      Provider.of<AuthDataProvider>(context, listen: false).setAuth(authData);
-      var authDataModel =
-          Provider.of<AuthDataProvider>(context, listen: false).getAuth();
-      try {
-        if (authDataModel?.accessToken != "") {
-          if (authDataModel?.accessToken?[0] != "e") {
-          } else {
-            if (authData.accessToken != "") {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => HomeView()),
-              );
-            } else {
-              ShowCustomDialog("Error", "Đã xảy ra lỗi đăng nhập", context);
-            }
-          }
-        }
-      } catch (e) {
-        ShowCustomDialog('Error', 'Error loading web page: $e', context);
-      }
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => LoginWithMicrosoft_View()));
     }
   }
 }
