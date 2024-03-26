@@ -7,7 +7,7 @@ import '../../theme/colors/light_colors.dart';
 import '../../widgets/active_project_card.dart';
 import '../../widgets/task_column.dart';
 import '../../widgets/top_container.dart';
-import 'calendar_view.dart';
+import 'calendar_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -170,12 +170,7 @@ class _HomePageState extends State<HomePage> {
                                 children: <Widget>[
                                   subheading('Thông tin sinh viên'),
                                   GestureDetector(
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        CalenderView.route(),
-                                      );
-                                    },
+                                    onTap: () => CalendarPage(),
                                     child: calendarIcon(),
                                   ),
                                 ],
