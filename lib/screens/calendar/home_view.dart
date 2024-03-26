@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qldt_pka/screens/calendar/home_page.dart';
+import 'package:qldt_pka/screens/login/login_with_microsoft.dart';
+import 'package:qldt_pka/screens/logout/logout_microsoft.dart';
 import '../../models/user_model.dart';
 import '../../providers/user_provider.dart';
 import '../../theme/colors/light_colors.dart';
@@ -18,8 +20,22 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: LightColors.kLightYellow,
+      backgroundColor: const Color.fromRGBO(255, 249, 236, 1),
       appBar: AppBar(
+        automaticallyImplyLeading: false,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.logout),
+            tooltip: 'Go to the next page',
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute<void>(
+                builder: (BuildContext context) {
+                  return LogOutWithMicrosoft_View();
+                },
+              ));
+            },
+          )
+        ],
         title: FutureBuilder(
           future: Provider.of<UserDataProvider>(context, listen: false)
               .fetchData(context),
@@ -32,10 +48,11 @@ class _HomeViewState extends State<HomeView> {
               return Text('Error: ${snapshot.error}');
             } else {
               // Data loaded successfully
-              UserModel? courseData =
+              UserModel? userData =
                   Provider.of<UserDataProvider>(context, listen: false)
                       .getUsers(context);
-              return Text("Xin chào ${courseData?.ten ?? 'No course data'}");
+              return Text(
+                  "Xin chào ${userData?.ten ?? 'No course data'} ${userData?.hoDem ?? 'No course data'}");
             }
           },
         ),
