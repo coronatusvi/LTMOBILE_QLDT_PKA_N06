@@ -4,8 +4,6 @@ import 'package:qldt_pka/screens/login/login_with_microsoft.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import '../../providers/auth_provider.dart';
 import '../../utils/env.dart';
-import '../../widgets/dialogCustom.dart';
-import '../onboarding/onboarding_view.dart';
 
 class LogOutWithMicrosoft_View extends StatefulWidget {
   static route() => MaterialPageRoute(

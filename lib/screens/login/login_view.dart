@@ -151,17 +151,18 @@ class _SignInFormState extends State<SignInForm> {
         isShowConfetti
             ? CustomPositioned(
                 child: Transform.scale(
-                scale: 6,
-                child: RiveAnimation.asset(
-                  "assets/RiveAssets/confetti.riv",
-                  onInit: (artboard) {
-                    StateMachineController controller =
-                        getRiveController(artboard);
-                    confetti =
-                        controller.findSMI("Trigger explosion") as SMITrigger;
-                  },
+                  scale: 6,
+                  child: RiveAnimation.asset(
+                    "assets/RiveAssets/confetti.riv",
+                    onInit: (artboard) {
+                      StateMachineController controller =
+                          getRiveController(artboard);
+                      confetti =
+                          controller.findSMI("Trigger explosion") as SMITrigger;
+                    },
+                  ),
                 ),
-              ))
+              )
             : const SizedBox()
       ],
     );

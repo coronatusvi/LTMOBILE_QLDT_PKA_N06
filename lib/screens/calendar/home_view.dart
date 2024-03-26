@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qldt_pka/screens/calendar/home_page.dart';
-import 'package:qldt_pka/screens/login/login_with_microsoft.dart';
 import 'package:qldt_pka/screens/logout/logout_microsoft.dart';
 import '../../models/user_model.dart';
 import '../../providers/user_provider.dart';
-import '../../theme/colors/light_colors.dart';
 
 class HomeView extends StatefulWidget {
   static route() => MaterialPageRoute(
