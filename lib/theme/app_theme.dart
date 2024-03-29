@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import 'theme.dart';
 
@@ -13,9 +12,9 @@ class AppTheme {
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
       backgroundColor: Pallete.blueColor,
     ),
-    textTheme: TextTheme(
-      bodyMedium: GoogleFonts.manrope(color: Colors.white, fontSize: 16),
-    ),
+    // textTheme: TextTheme(
+    //   bodyMedium: GoogleFonts.manrope(color: Colors.white, fontSize: 16),
+    // ),
     useMaterial3: true,
     splashFactory: InkSparkle.splashFactory,
   );

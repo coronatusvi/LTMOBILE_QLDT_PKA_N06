@@ -1,7 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../../../common/common.dart';
 import '../../../constants/assets_constants.dart';
 import '../../../features/auth/view/login_view.dart';
