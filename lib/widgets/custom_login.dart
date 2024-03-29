@@ -45,7 +45,8 @@ Future<Object?> customSigninDialog(BuildContext context,
                           textAlign: TextAlign.center,
                         ),
                       ),
-                      const SignInForm(),
+                      Image.network(
+                          "https://lh3.googleusercontent.com/proxy/NRZHTIuAgDNhX7iJOU3lvWHUEY8U5ZRCbdPbWSF2laByyXi9Tmm2xMbH7hxMQY5-znubO6ksZ8NcdjenwMLyAUCukkkzBBEyS0acJt27Lgeigh6m2D0KuPR6cPntEVY67HODxS7QMjec7NzaEQ"),
                       const Row(
                         children: [
                           Expanded(
@@ -54,7 +55,7 @@ Future<Object?> customSigninDialog(BuildContext context,
                           Padding(
                             padding: EdgeInsets.symmetric(horizontal: 16),
                             child: Text(
-                              "OR",
+                              "with",
                               style: TextStyle(color: Colors.black26),
                             ),
                           ),

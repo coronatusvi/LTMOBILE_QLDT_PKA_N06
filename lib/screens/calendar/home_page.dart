@@ -170,7 +170,7 @@ class _HomePageState extends State<HomePage> {
                                 children: <Widget>[
                                   subheading('Thông tin sinh viên'),
                                   GestureDetector(
-                                    onTap: () => CalendarPage(),
+                                    onTap: () => {CalendarPage()},
                                     child: calendarIcon(),
                                   ),
                                 ],
