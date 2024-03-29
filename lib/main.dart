@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qldt_pka/providers/auth_provider.dart';
-import 'package:qldt_pka/providers/course_provider.dart';
-import 'package:qldt_pka/providers/user_provider.dart';
-import 'package:qldt_pka/screens/onboarding/onboarding_view.dart';
+import '../../providers/auth_provider.dart';
+import '../../providers/course_provider.dart';
+import '../../providers/user_provider.dart';
+import 'screens/onboarding/onboarding_view.dart';
 
 void main() {
   runApp(const MyApp());

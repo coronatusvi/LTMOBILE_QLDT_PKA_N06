@@ -45,8 +45,7 @@ Future<Object?> customSigninDialog(BuildContext context,
                           textAlign: TextAlign.center,
                         ),
                       ),
-                      Image.network(
-                          "https://lh3.googleusercontent.com/proxy/NRZHTIuAgDNhX7iJOU3lvWHUEY8U5ZRCbdPbWSF2laByyXi9Tmm2xMbH7hxMQY5-znubO6ksZ8NcdjenwMLyAUCukkkzBBEyS0acJt27Lgeigh6m2D0KuPR6cPntEVY67HODxS7QMjec7NzaEQ"),
+                      Image.asset("assets/Backgrounds/phenikaa.png"),
                       const Row(
                         children: [
                           Expanded(

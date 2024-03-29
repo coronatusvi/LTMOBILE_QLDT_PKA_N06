@@ -10,8 +10,8 @@
 .svn/
 migrate_working_dir/
 /lib/utils/env.dart
+/lib/constants/appwrite_constants.dart
 /lib/utils/env.env
-
 # IntelliJ related
 *.iml
 *.ipr
