@@ -56,14 +56,6 @@ class ActiveProjectsCard extends StatelessWidget {
                     fontWeight: FontWeight.w700,
                   ),
                 ),
-                Text(
-                  subtitle!,
-                  style: TextStyle(
-                    fontSize: 12.0,
-                    color: Colors.white54,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
               ],
             ),
           ],

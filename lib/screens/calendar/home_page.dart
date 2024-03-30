@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
+import 'package:qldt_pka/screens/calendar/calendar_view.dart';
 import '../../models/user_model.dart';
 import '../../providers/user_provider.dart';
 import '../../theme/colors/light_colors.dart';
 import '../../widgets/active_project_card.dart';
 import '../../widgets/task_column.dart';
 import '../../widgets/top_container.dart';
-import 'calendar_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -169,10 +169,18 @@ class _HomePageState extends State<HomePage> {
                                     MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
                                   subheading('Thông tin sinh viên'),
-                                  GestureDetector(
-                                    onTap: () => {CalendarPage()},
-                                    child: calendarIcon(),
-                                  ),
+                                  IconButton(
+                                    icon: const Icon(Icons.calendar_today),
+                                    tooltip: 'Go to the next page',
+                                    onPressed: () {
+                                      Navigator.push(context,
+                                          MaterialPageRoute<void>(
+                                        builder: (BuildContext context) {
+                                          return CalenderView();
+                                        },
+                                      ));
+                                    },
+                                  )
                                 ],
                               ),
                               SizedBox(height: 15.0),
